@@ -12,6 +12,43 @@ import util.DbcpBean;
 
 public class ProductDao {
 	
+	//이미지 업로드
+	public int insert1(ProductDto dto) {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    int generatedNum = 0;
+	    try {
+	        conn = new DbcpBean().getConn();
+	        String sql = "INSERT INTO product(num, name, description, price, status, imagepath) VALUES(product_seq.NEXTVAL, ?, ?, ?, ?, ?)";
+	        pstmt = conn.prepareStatement(sql, new String[] {"num"});
+	        pstmt.setString(1, dto.getName());
+	        pstmt.setString(2, dto.getDescription());
+	        pstmt.setInt(3, dto.getPrice());
+	        pstmt.setString(4, dto.getStatus());
+	        pstmt.setString(5, dto.getImagePath());
+
+	        int rowCount = pstmt.executeUpdate();
+
+	        if (rowCount > 0) {
+	            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+	                if (generatedKeys.next()) {
+	                    generatedNum = generatedKeys.getInt(1);
+	                    dto.setNum(generatedNum);
+	                }
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null) pstmt.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e) {}
+	    }
+	    return generatedNum;
+	}
+	
 	// 상품 정보 수정
 	public boolean update(ProductDto dto) {
 		Connection conn = null;
@@ -22,7 +59,7 @@ public class ProductDao {
 			conn = new DbcpBean().getConn();
 			String sql = """
 					UPDATE product
-					SET name=?, description=?, price=?, status=?
+					SET name=?, description=?, price=?, status=?, imagepath=?
 					WHERE num=?
 					""";
 			pstmt = conn.prepareStatement(sql);
@@ -31,7 +68,8 @@ public class ProductDao {
 			pstmt.setString(2, dto.getDescription());
 			pstmt.setInt(3, dto.getPrice());
 			pstmt.setString(4, dto.getStatus());
-			pstmt.setInt(5, dto.getNum());
+			pstmt.setString(5, dto.getImagePath());
+			pstmt.setInt(6, dto.getNum());
 			// sql 문 실행하고 변화된(추가된, 수정된, 삭제된) row 의 갯수 리턴받기
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -104,8 +142,8 @@ public class ProductDao {
 		try {
 			conn = new DbcpBean().getConn();
 			String sql = """
-				    INSERT INTO product(num, name, description, price, status)
-				    VALUES(product_seq.NEXTVAL, ?, ?, ?, ?)
+				    INSERT INTO product(num, name, description, price, status, imagepath)
+				    VALUES(product_seq.NEXTVAL, ?, ?, ?, ?, ?)
 				    """;
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getName());
@@ -149,7 +187,7 @@ public class ProductDao {
 			conn = new DbcpBean().getConn();
 			// 실행할 sql 문
 			String sql = """
-					SELECT name, description, price, status
+					SELECT name, description, price, status, imagepath
 					FROM product
 					WHERE num=?
 					""";
@@ -167,6 +205,7 @@ public class ProductDao {
 				dto.setDescription(rs.getString("description"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setStatus(rs.getString("status"));
+				dto.setImagePath(rs.getString("imagepath"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

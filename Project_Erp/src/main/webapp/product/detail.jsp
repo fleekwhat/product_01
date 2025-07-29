@@ -27,7 +27,8 @@
             <tr>
                 <th>이미지</th>
                 <td>
-                    <img src="<%=request.getContextPath() + "/upload/" + dto.getImagePath()%>" class="product-img">
+                    <img src="<%=request.getContextPath() + "/image?name=" + dto.getImagePath()%>" class="product-img">
+
                 </td>
             </tr>
             <% } %>

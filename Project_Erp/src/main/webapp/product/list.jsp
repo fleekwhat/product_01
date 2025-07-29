@@ -42,7 +42,8 @@
 					<td><%=dto.getPrice() %></td>
 					<td><%=dto.getStatus() %></td>
 					<td><a href="updateform.jsp?num=<%=dto.getNum()%>">수정</a></td>	
-					<td><a href="delete.jsp?num=<%=dto.getNum()%>">삭제</a></td>	
+					<td><a href="<%=request.getContextPath()%>/product/delete.jsp?num=<%=dto.getNum()%>" 
+  					 onclick="return confirm('삭제하시겠습니까?');">삭제</a></td>	
 				</tr>
 			<%} %>
 			</tbody>

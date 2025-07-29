@@ -7,6 +7,7 @@
     String description = request.getParameter("description");
     int price = Integer.parseInt(request.getParameter("price"));
     String status = request.getParameter("status");
+    String imagePath = request.getParameter("imagePath");
 
     // DTO, DAO 이용 DB 저장
     dto.ProductDto dto = new dto.ProductDto();
@@ -16,6 +17,7 @@
     dto.setDescription(description);
     dto.setPrice(price);
     dto.setStatus(status);
+    dto.setImagePath(imagePath);
 
     boolean isSuccess = dao.insert(dto);
 %>

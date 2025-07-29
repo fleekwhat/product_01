@@ -12,15 +12,6 @@ public class ProductDto {
 		// 기본 생성자
 	}
 
-	// 🔥 여기에 추가된 생성자!
-	public ProductDto(String name, String description, int price, String status, String imagePath) {
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.status = status;
-		this.imagePath = imagePath;
-	}
-
 	// Getter / Setter
 	public int getNum() {
 		return num;
