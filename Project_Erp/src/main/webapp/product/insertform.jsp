@@ -35,7 +35,7 @@
 		</div>
 		 <div>
 			<label>상품 이미지:</label>
-			<input type="file" name="imagePath">
+			<input type="file" name="imagePath" accept="image/*">
 		</div> 
 		<button type="submit">등록</button>
 	</form>

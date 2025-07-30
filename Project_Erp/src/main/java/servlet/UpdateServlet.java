@@ -30,7 +30,7 @@ public class UpdateServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String uploadPath = getServletContext().getInitParameter("FileLocation");
+        String uploadPath = getServletContext().getInitParameter("fileLocation");
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) uploadDir.mkdirs();
 

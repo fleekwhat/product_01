@@ -1,4 +1,4 @@
-ALTER TABLE product ADD image_path VARCHAR2(255);
+
 
 CREATE TABLE product (
 	num NUMBER PRIMARY KEY, --상품 고유 번호
@@ -6,6 +6,7 @@ CREATE TABLE product (
 	description VARCHAR2(1000), --상품 설명
 	price NUMBER NOT NULL, --상품 가격
 	status VARCHAR2(20) --상품 상태
+	imagepath VARCHAR2(255) --상품 이미지
 );
 
 CREATE SEQUENCE product_seq;

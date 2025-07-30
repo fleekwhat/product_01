@@ -24,7 +24,7 @@ public class ImageServlet extends HttpServlet {
             return;
         }
 
-        String uploadPath = getServletContext().getInitParameter("FileLocation");
+        String uploadPath = getServletContext().getInitParameter("fileLocation");
         File imageFile = new File(uploadPath, fileName);
 
         if (!imageFile.exists()) {

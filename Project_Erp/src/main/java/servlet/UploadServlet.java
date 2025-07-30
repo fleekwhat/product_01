@@ -31,7 +31,7 @@ public class UploadServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         // context-param 에서 절대 경로 읽기
-        String uploadPath = getServletContext().getInitParameter("FileLocation");
+        String uploadPath = getServletContext().getInitParameter("fileLocation");
 
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) uploadDir.mkdirs();

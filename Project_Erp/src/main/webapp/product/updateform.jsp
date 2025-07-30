@@ -73,34 +73,34 @@
         </form>
     </div>
     <script>
-function validateForm() {
-    const name = document.getElementById('name').value.trim();
-    const description = document.getElementById('description').value.trim();
-    const price = document.getElementById('price').value.trim();
-    const status = document.getElementById('status').value.trim();
+		function validateForm() {
+    		const name = document.getElementById('name').value.trim();
+    		const description = document.getElementById('description').value.trim();
+    		const price = document.getElementById('price').value.trim();
+    		const status = document.getElementById('status').value.trim();
 
-    if (!name) {
-        alert('상품명을 입력해주세요.');
-        return false;
-    }
-    if (!description) {
-        alert('설명을 입력해주세요.');
-        return false;
-    }
-    if (!price) {
-        alert('가격을 입력해주세요.');
-        return false;
-    }
-    if (isNaN(price) || Number(price) <= 0) {
-        alert('가격은 0보다 큰 숫자로 입력해주세요.');
-        return false;
-    }
-    if (!status) {
-        alert('상태를 선택해주세요.');
-        return false;
-    }
-    return true;  // 모두 통과했으면 폼 제출 허용
-}
+    		if (!name) {
+        		alert('상품명을 입력해주세요.');
+        		return false;
+		    }
+		    if (!description) {
+		        alert('설명을 입력해주세요.');
+		        return false;
+		    }
+		    if (!price) {
+		        alert('가격을 입력해주세요.');
+		        return false;
+		    }
+		    if (isNaN(price) || Number(price) <= 0) {
+		        alert('가격은 0보다 큰 숫자로 입력해주세요.');
+		        return false;
+		    }
+		    if (!status) {
+		        alert('상태를 선택해주세요.');
+		        return false;
+		    }
+		    return true;  // 모두 통과했으면 폼 제출 허용
+		}
 </script>
 </body>
 </html>
